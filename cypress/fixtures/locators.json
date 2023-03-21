@@ -1,0 +1,12 @@
+{
+
+    "registerPage": {
+        "firstNameInputField": "#first-name",
+        "lastNameInputField": "#last-name",
+        "emailinputField": "#email",
+        "passwordInputField": "#password",
+        "passwordConfirmation": "#password-confirmation",
+        "acceptTermsCheckbox": "input[type='checkbox']",
+        "submitBtn": "button[type='submit']"
+    }
+}

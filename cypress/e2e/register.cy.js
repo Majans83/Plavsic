@@ -1,20 +1,22 @@
 /// <reference types="Cypress" />
 
+const locators = require('../fixtures/locators.json')
+
 describe ("Register page", () => {
 
   it("Visit register page", () => {
-      cy.visit("https://gallery-app.vivifyideas.com/register");
+      cy.visit('/register');
 
   });
 it("Positive case - Successful registration", () => {
-  cy.visit("https://gallery-app.vivifyideas.com/register");
-  cy.get('input[id="first-name"]').type('majatest2019');
-  cy.get('input[id="last-name"]').type('majatest9102');
-  cy.get('input[id="email"]').type('emi2019@gmail.com');
-  cy.get('input[id="password"]').type('test1234');
-  cy.get('input[id="password-confirmation"]').type('test1234');
-  cy.get('input[type="checkbox"]').check();
-  cy.get('button[type="submit"]').click();
+  cy.visit('/register');
+  cy.get(locators.registerPage.firstNameInputField).type('majatest2019');
+  cy.get(locators.registerPage.lastNameInputField).type('majatest9102');
+  cy.get(locators.registerPage.emailinputField).type('emi2019@gmail.com');
+  cy.get(locators.registerPage.passwordInputField).type('test1234');
+  cy.get(locators.registerPage.passwordConfirmation).type('test1234');
+  cy.get(locators.registerPage.acceptTermsCheckbox).check();
+  cy.get(locators.registerPage.submitBtn).click();
 })
 
 });
