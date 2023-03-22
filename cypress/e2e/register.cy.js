@@ -1,6 +1,8 @@
 /// <reference types="Cypress" />
 
-const locators = require('../fixtures/locators.json')
+// const locators = require('../fixtures/locators.json')
+
+import { registerPage } from "../page_object/registerPage";
 
 describe ("Register page", () => {
 
@@ -10,13 +12,72 @@ describe ("Register page", () => {
   });
 it("Positive case - Successful registration", () => {
   cy.visit('/register');
-  cy.get(locators.registerPage.firstNameInputField).type('majatest2019');
-  cy.get(locators.registerPage.lastNameInputField).type('majatest9102');
-  cy.get(locators.registerPage.emailinputField).type('emi2019@gmail.com');
-  cy.get(locators.registerPage.passwordInputField).type('test1234');
-  cy.get(locators.registerPage.passwordConfirmation).type('test1234');
-  cy.get(locators.registerPage.acceptTermsCheckbox).check();
-  cy.get(locators.registerPage.submitBtn).click();
+  registerPage.firstNameInputField.type('majatest2019');
+  registerPage.lastNameInputField.type('majatest9102');
+  registerPage.emailInputField.type('emi2019@gmail.com');
+  registerPage.passwordInputField.type('test1234');
+  registerPage.passwordConfirmationInputField.type('test1234');
+  registerPage.acceptTermsCheckbox.check();
+  registerPage.submitBtn.click();
 })
 
-});
+it("Negative case - Using invalid email", () => {
+  cy.visit('/register');
+  registerPage.firstNameInputField.type('majatest2019');
+  registerPage.lastNameInputField.type('majatest9102');
+  registerPage.emailInputField.type('emi2019@@gmail.com');
+  registerPage.passwordInputField.type('test1234');
+  registerPage.passwordConfirmationInputField.type('test1234');
+  registerPage.acceptTermsCheckbox.check();
+  registerPage.submitBtn.click();
+
+})
+
+it("Negative case - Using invalid password", () => {
+  cy.visit('/register');
+  registerPage.firstNameInputField.type('majatest2019');
+  registerPage.lastNameInputField.type('majatest9102');
+  registerPage.emailInputField.type('emi2019@gmail.com');
+  registerPage.passwordInputField.type('t');
+  registerPage.passwordConfirmationInputField.type('test1234');
+  registerPage.acceptTermsCheckbox.check();
+  registerPage.submitBtn.click();
+
+})
+
+it("Negative case - Using invalid password confirmation", () => {
+  cy.visit('/register');
+  registerPage.firstNameInputField.type('majatest2019');
+  registerPage.lastNameInputField.type('majatest9102');
+  registerPage.emailInputField.type('emi2019@gmail.com');
+  registerPage.passwordInputField.type('test1234');
+  registerPage.passwordConfirmationInputField.type('t');
+  registerPage.acceptTermsCheckbox.check();
+  registerPage.submitBtn.click();
+
+})
+
+it("Negative case - Terms and conditions are not accepted", () => {
+  cy.visit('/register');
+  registerPage.firstNameInputField.type('majatest2019');
+  registerPage.lastNameInputField.type('majatest9102');
+  registerPage.emailInputField.type('emi2019@gmail.com');
+  registerPage.passwordInputField.type('test1234');
+  registerPage.passwordConfirmationInputField.type('test1234');
+  registerPage.acceptTermsCheckbox.uncheck();
+  registerPage.submitBtn.click();
+
+})
+
+it("Negative case - Leave email field empty", () => {
+  cy.visit('/register');
+  registerPage.firstNameInputField.type('majatest2019');
+  registerPage.lastNameInputField.type('majatest9102');
+  registerPage.emailInputField.type('empty');
+  registerPage.passwordInputField.type('test1234');
+  registerPage.passwordConfirmationInputField.type('test1234');
+  registerPage.acceptTermsCheckbox.check();
+  registerPage.submitBtn.click();
+
+})
+})
