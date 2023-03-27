@@ -33,7 +33,7 @@ class RegisterPage {
     }
 
     get errorAlert () {
-        return cy.get('.alert alert-danger');
+        return cy.get("p[class ='alert alert-danger']");
     }
 }
 
