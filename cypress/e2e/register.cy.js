@@ -93,7 +93,7 @@ it("Negative case - Using invalid password confirmation", () => {
 
 })
 
-it.only("Negative case - Terms and conditions are not accepted", () => {
+it("Negative case - Terms and conditions are not accepted", () => {
   cy.visit('/register');
   var pass = faker.internet.password();
   registerPage.firstNameInputField.type(faker.name.firstName());
@@ -119,6 +119,33 @@ it("Negative case - Leave email field empty", () => {
   registerPage.passwordConfirmationInputField.type(pass);
   registerPage.acceptTermsCheckbox.check();
   registerPage.submitBtn.click();
-
 })
+ 
+it.only("Register via Api", () => {
+    cy.request({
+      method: 'POST',
+      url: 'https://gallery-api.vivifyideas.com/api/auth/register',
+      body: {
+        first_name:"maki",
+        last_name:"maki",
+        email:"maki202021218@gmail.com",
+        password:"1234t1234",
+        password_confirmation:"1234t1234",
+        terms_and_conditions: true 
+      }
+
+      })
+      .then((response) => {
+        cy.log(response);
+        expect(response.status).eq(200);
+        expect(response.statusText).eq('OK');
+        expect(response.body.access_token).to.be.a('String');
+        
+
+        
+      })
+
+
+  })
+  
 
