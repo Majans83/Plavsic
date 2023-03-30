@@ -141,7 +141,7 @@ it.only("Register via Api", () => {
         expect(response.statusText).eq('OK');
         expect(response.body.access_token).to.be.a('String');
         
-
+        window.localStorage.setItem('token', response.body.access_token);
         
       })
 

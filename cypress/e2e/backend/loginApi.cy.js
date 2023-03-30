@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-const common = require('mocha/lib/interfaces/common');
+const { commonElements} = require('../../fixtures/data.json');
 const data = require('../../fixtures/data.json');
 
 describe('Login via api', () => {
@@ -18,6 +18,12 @@ describe('Login via api', () => {
 
         cy.loginViaAPI(userEmail, password);
         cy.wait(2000);
+         // cy.visit('/login');
+        // loginPage.emailInputField.type('markoqa13@gmail.com');
+        // loginPage.passwordInputField.type('Marko123');
+        // loginPage.submitBtn.click();
+
+        // commonElements.headingText.should('have.text', 'All Galleries');
     })
 
     it('Poseti My galleries page', () => {

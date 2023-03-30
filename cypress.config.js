@@ -9,7 +9,7 @@ module.exports = defineConfig({
     env: {
       registeredUserEmail: "emi2019@gmail.com",
       validPassword: "test1234",
-      unregisteredUserEmail: "emi2020@gmail.com",
+      unregisteredUserEmail: "emi123456@gmail.com",
       passwordTooShort: "test"
 
     }
